@@ -1,0 +1,340 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Waktu pembuatan: 06 Des 2021 pada 16.24
+-- Versi server: 10.4.19-MariaDB
+-- Versi PHP: 7.4.19
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `db_pendaftaranpasien`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `admin`
+--
+
+CREATE TABLE `admin` (
+  `no_induk` int(11) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `role` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `admin`
+--
+
+INSERT INTO `admin` (`no_induk`, `nama`, `role`) VALUES
+(321, 'syahrul riza', 'admin obat'),
+(456, 'reza', 'admin regristrasi');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `detailtransaksi`
+--
+
+CREATE TABLE `detailtransaksi` (
+  `id_obat` int(11) NOT NULL,
+  `id_transaksi` int(11) NOT NULL,
+  `jumlah_obat` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `jenis`
+--
+
+CREATE TABLE `jenis` (
+  `id_jenis` int(11) NOT NULL,
+  `jenis_obat` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `jenis`
+--
+
+INSERT INTO `jenis` (`id_jenis`, `jenis_obat`) VALUES
+(1, 'tablet 1233'),
+(17, 'tes');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `kategori`
+--
+
+CREATE TABLE `kategori` (
+  `id_kategori` int(11) NOT NULL,
+  `kategori_obat` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `kategori`
+--
+
+INSERT INTO `kategori` (`id_kategori`, `kategori_obat`) VALUES
+(1, 'obat bebas'),
+(2, 'obat tertutup'),
+(6, 'bbbbbbbbbbbbbb');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `obat`
+--
+
+CREATE TABLE `obat` (
+  `id_obat` int(11) NOT NULL,
+  `id_jenis` int(11) NOT NULL,
+  `id_kategori` int(11) NOT NULL,
+  `nama_obat` varchar(50) NOT NULL,
+  `harga` int(11) NOT NULL,
+  `stock` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `obat`
+--
+
+INSERT INTO `obat` (`id_obat`, `id_jenis`, `id_kategori`, `nama_obat`, `harga`, `stock`) VALUES
+(1, 1, 1, 'paracetamol', 10000, 20),
+(2, 1, 1, 'Amoxcilin', 20000, 20);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `pasien`
+--
+
+CREATE TABLE `pasien` (
+  `id_pasien` int(11) NOT NULL,
+  `no_telp` varchar(20) NOT NULL,
+  `alamat` varchar(50) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `pekerjaan` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `pasien`
+--
+
+INSERT INTO `pasien` (`id_pasien`, `no_telp`, `alamat`, `nama`, `email`, `pekerjaan`) VALUES
+(2, '08123456777', 'rumah', 'tes', 'tes@gmail.com', 'mahasiswa');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `poliklinik`
+--
+
+CREATE TABLE `poliklinik` (
+  `id_poliklinik` int(11) NOT NULL,
+  `nama` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `poliklinik`
+--
+
+INSERT INTO `poliklinik` (`id_poliklinik`, `nama`) VALUES
+(4, 'Poliklinik Mata');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `regristrasi`
+--
+
+CREATE TABLE `regristrasi` (
+  `id_regristrasi` int(11) NOT NULL,
+  `id_poliklinik` int(11) NOT NULL,
+  `no_induk` int(11) NOT NULL,
+  `id_pasien` int(11) NOT NULL,
+  `tgl_regristrasi` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `regristrasi`
+--
+
+INSERT INTO `regristrasi` (`id_regristrasi`, `id_poliklinik`, `no_induk`, `id_pasien`, `tgl_regristrasi`) VALUES
+(1, 4, 456, 2, '2021-12-08');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `transaksiobat`
+--
+
+CREATE TABLE `transaksiobat` (
+  `id_transaksi` int(11) NOT NULL,
+  `id_regristrasi` int(11) NOT NULL,
+  `no_induk` int(11) NOT NULL,
+  `tgl_transaksi` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indeks untuk tabel `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`no_induk`);
+
+--
+-- Indeks untuk tabel `detailtransaksi`
+--
+ALTER TABLE `detailtransaksi`
+  ADD KEY `id_obat` (`id_obat`),
+  ADD KEY `id_transaksi` (`id_transaksi`);
+
+--
+-- Indeks untuk tabel `jenis`
+--
+ALTER TABLE `jenis`
+  ADD PRIMARY KEY (`id_jenis`);
+
+--
+-- Indeks untuk tabel `kategori`
+--
+ALTER TABLE `kategori`
+  ADD PRIMARY KEY (`id_kategori`);
+
+--
+-- Indeks untuk tabel `obat`
+--
+ALTER TABLE `obat`
+  ADD PRIMARY KEY (`id_obat`),
+  ADD KEY `id_jenis` (`id_jenis`),
+  ADD KEY `id_kategori` (`id_kategori`);
+
+--
+-- Indeks untuk tabel `pasien`
+--
+ALTER TABLE `pasien`
+  ADD PRIMARY KEY (`id_pasien`);
+
+--
+-- Indeks untuk tabel `poliklinik`
+--
+ALTER TABLE `poliklinik`
+  ADD PRIMARY KEY (`id_poliklinik`);
+
+--
+-- Indeks untuk tabel `regristrasi`
+--
+ALTER TABLE `regristrasi`
+  ADD PRIMARY KEY (`id_regristrasi`),
+  ADD KEY `id_poliklinik` (`id_poliklinik`),
+  ADD KEY `no_induk` (`no_induk`),
+  ADD KEY `id_pasien` (`id_pasien`);
+
+--
+-- Indeks untuk tabel `transaksiobat`
+--
+ALTER TABLE `transaksiobat`
+  ADD PRIMARY KEY (`id_transaksi`),
+  ADD KEY `id_regristrasi` (`id_regristrasi`),
+  ADD KEY `no_induk` (`no_induk`);
+
+--
+-- AUTO_INCREMENT untuk tabel yang dibuang
+--
+
+--
+-- AUTO_INCREMENT untuk tabel `jenis`
+--
+ALTER TABLE `jenis`
+  MODIFY `id_jenis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT untuk tabel `kategori`
+--
+ALTER TABLE `kategori`
+  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT untuk tabel `obat`
+--
+ALTER TABLE `obat`
+  MODIFY `id_obat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `pasien`
+--
+ALTER TABLE `pasien`
+  MODIFY `id_pasien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `poliklinik`
+--
+ALTER TABLE `poliklinik`
+  MODIFY `id_poliklinik` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT untuk tabel `regristrasi`
+--
+ALTER TABLE `regristrasi`
+  MODIFY `id_regristrasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `transaksiobat`
+--
+ALTER TABLE `transaksiobat`
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+--
+
+--
+-- Ketidakleluasaan untuk tabel `detailtransaksi`
+--
+ALTER TABLE `detailtransaksi`
+  ADD CONSTRAINT `detailtransaksi_ibfk_1` FOREIGN KEY (`id_obat`) REFERENCES `obat` (`id_obat`),
+  ADD CONSTRAINT `detailtransaksi_ibfk_2` FOREIGN KEY (`id_transaksi`) REFERENCES `transaksiobat` (`id_transaksi`);
+
+--
+-- Ketidakleluasaan untuk tabel `obat`
+--
+ALTER TABLE `obat`
+  ADD CONSTRAINT `obat_ibfk_1` FOREIGN KEY (`id_jenis`) REFERENCES `jenis` (`id_jenis`),
+  ADD CONSTRAINT `obat_ibfk_2` FOREIGN KEY (`id_kategori`) REFERENCES `kategori` (`id_kategori`);
+
+--
+-- Ketidakleluasaan untuk tabel `regristrasi`
+--
+ALTER TABLE `regristrasi`
+  ADD CONSTRAINT `regristrasi_ibfk_1` FOREIGN KEY (`id_poliklinik`) REFERENCES `poliklinik` (`id_poliklinik`),
+  ADD CONSTRAINT `regristrasi_ibfk_2` FOREIGN KEY (`no_induk`) REFERENCES `admin` (`no_induk`),
+  ADD CONSTRAINT `regristrasi_ibfk_3` FOREIGN KEY (`id_pasien`) REFERENCES `pasien` (`id_pasien`);
+
+--
+-- Ketidakleluasaan untuk tabel `transaksiobat`
+--
+ALTER TABLE `transaksiobat`
+  ADD CONSTRAINT `transaksiobat_ibfk_1` FOREIGN KEY (`id_regristrasi`) REFERENCES `regristrasi` (`id_regristrasi`),
+  ADD CONSTRAINT `transaksiobat_ibfk_2` FOREIGN KEY (`no_induk`) REFERENCES `admin` (`no_induk`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
