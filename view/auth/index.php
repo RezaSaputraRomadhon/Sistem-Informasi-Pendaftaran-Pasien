@@ -56,7 +56,7 @@
                 </div>
             </div>
             <div class="row d-flex justify-content-center">
-                <div class="col-9 col-md-4 bg-white mt-4 p-5" style="border-radius: 10px;">
+                <div class="col-9 col-xl-4 bg-white mt-4 p-5" style="border-radius: 10px;">
                     <form action="index.php?page=auth&aksi=authAdmin" method="POST" onsubmit="return cekFormLogin()">
                         <div class="form-group">
                             <label>No Induk</label>

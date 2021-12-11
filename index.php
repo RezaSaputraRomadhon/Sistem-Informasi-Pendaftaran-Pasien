@@ -16,16 +16,17 @@ require_once("Controller/jenisObatController.php");
 require_once("Controller/kategoriObatController.php");
 require_once("Controller/poliklinikController.php");
 require_once("Controller/pasienController.php");
+require_once("Controller/menuController.php");
 //require_once("Controller/regristrasiController.php");
 
 if (isset($_GET['page']) && isset($_GET['aksi'])) {
     session_start();
     $aksi = $_GET['aksi'];
     $page = $_GET['page'];
-
+    $menu = new menuController();
     if ($page == 'pasien') {
         $pasien = new pasienController();
-        require_once('view/menu/headerRegristrasi.php');
+        $menu->header(1);
         if ($_SESSION['role'] == 'admin regristrasi') {
             if ($aksi == 'view') {
                 $pasien->index();
@@ -37,11 +38,10 @@ if (isset($_GET['page']) && isset($_GET['aksi'])) {
         } else {
             header("location: index.php?page=auth&aksi=login");
         }
-
-        require_once('view/menu/footer.php');
+        $menu->footer();
     } else if ($page == 'poliklinik') {
         $poliklinik = new poliklinikController();
-        require_once('view/menu/headerRegristrasi.php');
+        $menu->header(1);
         if ($_SESSION['role'] == 'admin regristrasi') {
             if ($aksi == 'view') {
                 $poliklinik->index();
@@ -53,11 +53,9 @@ if (isset($_GET['page']) && isset($_GET['aksi'])) {
         } else {
             header("location: index.php?page=auth&aksi=login");
         }
-
-        require_once('view/menu/footer.php');
+        $menu->footer();
     } else if ($page == 'regristrasi') {
-        //$regristrasi = new regristrasiController();
-        require_once('view/menu/headerRegristrasi.php');
+        $menu->header(1);
         if ($_SESSION['role'] == 'admin regristrasi') {
             if ($aksi == 'view') {
                 require_once('view/regristrasi/index.php');
@@ -67,11 +65,10 @@ if (isset($_GET['page']) && isset($_GET['aksi'])) {
         } else {
             header("location: index.php?page=auth&aksi=login");
         }
-
-        require_once('view/menu/footer.php');
+        $menu->footer();
     } else if ($page == 'obat') {
         $obat = new obatController();
-        require_once('view/menu/headerObat.php');
+        $menu->header(2);
         if ($_SESSION['role'] == 'admin obat') {
             if ($aksi == 'view') {
                 $obat->index();
@@ -87,9 +84,9 @@ if (isset($_GET['page']) && isset($_GET['aksi'])) {
         } else {
             header("location: index.php?page=auth&aksi=login");
         }
-        require_once('view/menu/footer.php');
+        $menu->footer();
     } else if ($page == 'transaksi') {
-        require_once('view/menu/headerObat.php');
+        $menu->header(2);
         if ($_SESSION['role'] == 'admin obat') {
             if ($aksi == 'view') {
                 require_once('view/transaksi/index.php');
@@ -105,11 +102,10 @@ if (isset($_GET['page']) && isset($_GET['aksi'])) {
         } else {
             header("location: index.php?page=auth&aksi=login");
         }
-
-        require_once('view/menu/footer.php');
+        $menu->footer();
     } else if ($page == 'jenisobat') {
         $jenisobat = new jenisObatController();
-        require_once('view/menu/headerObat.php');
+        $menu->header(2);
         if ($_SESSION['role'] == 'admin obat') {
             if ($aksi == 'view') {
                 $jenisobat->index();
@@ -127,11 +123,10 @@ if (isset($_GET['page']) && isset($_GET['aksi'])) {
         } else {
             header("location: index.php?page=auth&aksi=login");
         }
-
-        require_once('view/menu/footer.php');
+        $menu->footer();
     } else if ($page == 'kategoriobat') {
         $kategoriobat = new kategoriObatController();
-        require_once('view/menu/headerObat.php');
+        $menu->header(2);
         if ($_SESSION['role'] == 'admin obat') {
             if ($aksi == 'view') {
                 $kategoriobat->index();
@@ -149,8 +144,7 @@ if (isset($_GET['page']) && isset($_GET['aksi'])) {
         } else {
             header("location: index.php?page=auth&aksi=login");
         }
-
-        require_once('view/menu/footer.php');
+        $menu->footer();
     } else if ($page == "auth") {
         $auth = new authController();
         if ($aksi == "login") {
