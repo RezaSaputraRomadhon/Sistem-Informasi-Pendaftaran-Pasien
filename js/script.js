@@ -128,7 +128,7 @@ function cekFormObat()
 
 function cekFormPoliklinik()
 {
-    poliklinik = document.getElementById("namaPoliklinik");
+    poliklinik = document.getElementById("nama");
     if(poliklinik.value == ""){
         Swal.fire({
             icon: 'error',
@@ -141,6 +141,86 @@ function cekFormPoliklinik()
             icon: 'error',
             title: 'Oops...',
             text: 'nama Minimal 3 Karakter',
+        })
+        return false;
+    }
+}
+
+function cekFormPasien()
+{
+    pasien = document.getElementById("nama");
+    email = document.getElementById("email");
+    noHp = document.getElementById("noHp");
+    pekerjaan = document.getElementById("pekerjaan");
+    alamat = document.getElementById("alamat");
+    if(pasien.value == ""){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Nama Tidak Boleh Di Kosongi',
+        })
+        return false;
+    } else if(pasien.length <= 3){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'nama Minimal 3 Karakter',
+        })
+        return false;
+    } else if(email.value == ""){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Harga Tidak Boleh Di Kosongi',
+        })
+        return false;
+    } else if(email.value <= 3){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Harga Minimal 3 Karakter',
+        })
+        return false;
+    } else if(noHp.value == ""){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Harga Tidak Boleh Di Kosongi',
+        })
+        return false;
+    } else if(noHp.value <= 3){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Harga Minimal 3 Karakter',
+        })
+        return false;
+    } else if(pekerjaan.value == ""){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Harga Tidak Boleh Di Kosongi',
+        })
+        return false;
+    } else if(pekerjaan.value <= 3){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Harga Minimal 3 Karakter',
+        })
+        return false;
+    } else if(alamat.value == ""){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Harga Tidak Boleh Di Kosongi',
+        })
+        return false;
+    } else if(alamat.value <= 3){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Harga Minimal 3 Karakter',
         })
         return false;
     }

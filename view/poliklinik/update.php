@@ -27,13 +27,13 @@
             <h6 class="m-0 font-weight-bold text-dark-blue">Update Data Poliklinik</h6>
         </div>
         <div class="card-body">
-            <form action="" method="POST">
+            <form action="index.php?page=poliklinik&aksi=edit" method="POST">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Nama</label>
-                            <input type="hidden" class="form-control" id="id" name="id" value="1">
-                            <input type="text" class="form-control" id="nama" name="nama" value="Poli Umum">
+                            <input type="hidden" class="form-control" id="id" name="id" value="<?= $data['id_poliklinik'] ?>">
+                            <input type="text" class="form-control" id="nama" name="nama" value="<?= $data['nama'] ?>">
                         </div>
                     </div>
                     <div class="col-md-12">

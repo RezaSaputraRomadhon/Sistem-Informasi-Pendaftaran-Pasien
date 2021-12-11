@@ -28,7 +28,7 @@
                     <h6 class="m-0 font-weight-bold text-dark-blue">Tambah Data Pasien</h6>
                 </div>
                 <div class="card-body">
-                    <form action="" method="POST">
+                    <form action="index.php?page=pasien&aksi=store" method="POST" onsubmit="return cekFormPasien()">
                         <div class="form-group">
                             <label>Nama</label>
                             <input type="text" class="form-control" id="nama" name="nama">

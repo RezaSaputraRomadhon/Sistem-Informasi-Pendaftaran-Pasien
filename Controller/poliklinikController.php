@@ -18,7 +18,7 @@ class poliklinikController
 
     public function store()
     {
-        $poliklinik = htmlspecialchars($_POST['namaPoliklinik']);
+        $poliklinik = htmlspecialchars($_POST['nama']);
         if ($this->model->prosesStore($poliklinik)) {
             $_SESSION['pesan'] = 'Menambahkan';
             header("location: index.php?page=poliklinik&aksi=view");
@@ -38,7 +38,7 @@ class poliklinikController
     public function edit()
     {
         $id = htmlspecialchars($_POST['id']);
-        $namaPoliklinik = htmlspecialchars($_POST['namaPoliklinik']);
+        $namaPoliklinik = htmlspecialchars($_POST['nama']);
         if ($this->model->prosesEdit($id, $namaPoliklinik)) {
             $_SESSION['pesan'] = 'Mengupdate';
             header("location: index.php?page=poliklinik&aksi=view");

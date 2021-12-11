@@ -18,12 +18,16 @@ class pasienController
 
     public function store()
     {
-        $poliklinik = htmlspecialchars($_POST['namaPoliklinik']);
-        if ($this->model->prosesStore($poliklinik)) {
+        $nama = htmlspecialchars($_POST['nama']);
+        $email = htmlspecialchars($_POST['email']);
+        $noHp = htmlspecialchars($_POST['noHp']);
+        $pekerjaan = htmlspecialchars($_POST['pekerjaan']);
+        $alamat = htmlspecialchars($_POST['alamat']);
+        if ($this->model->prosesStore($nama,$email,$noHp,$pekerjaan,$alamat)) {
             $_SESSION['pesan'] = 'Menambahkan';
-            header("location: index.php?page=poliklinik&aksi=view");
+            header("location: index.php?page=pasien&aksi=view");
         } else {
-            header("location: index.php?page=poliklinik&aksi=tambah");
+            header("location: index.php?page=pasien&aksi=tambah");
         }
     }
 
@@ -32,18 +36,23 @@ class pasienController
         $id = $_GET['id'];
         $data = $this->model->getDataById($id);
         extract($data);
-        require_once('view/poliklinik/update.php');
+        require_once('view/pasien/update.php');
     }
 
     public function edit()
     {
         $id = htmlspecialchars($_POST['id']);
+        $nama = htmlspecialchars($_POST['nama']);
+        $email = htmlspecialchars($_POST['email']);
+        $noHp = htmlspecialchars($_POST['noHp']);
+        $pekerjaan = htmlspecialchars($_POST['pekerjaan']);
+        $alamat = htmlspecialchars($_POST['alamat']);
         $namaPoliklinik = htmlspecialchars($_POST['namaPoliklinik']);
-        if ($this->model->prosesEdit($id, $namaPoliklinik)) {
+        if ($this->model->prosesEdit($id,$nama,$email,$noHp,$pekerjaan,$alamat)) {
             $_SESSION['pesan'] = 'Mengupdate';
-            header("location: index.php?page=poliklinik&aksi=view");
+            header("location: index.php?page=pasien&aksi=view");
         } else {
-            header("location: index.php?page=poliklinik&aksi=update&id=$id");
+            header("location: index.php?page=pasien&aksi=update&id=$id");
         }
     }
 
@@ -52,6 +61,6 @@ class pasienController
         $id = htmlspecialchars($_GET['id']);
         $this->model->prosesDelete($id);
         $_SESSION['pesan'] = 'Menghapus';
-        header("location: index.php?page=poliklinik&aksi=view");
+        header("location: index.php?page=pasien&aksi=view");
     }
 }

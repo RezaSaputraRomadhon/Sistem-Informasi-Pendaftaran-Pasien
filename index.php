@@ -33,7 +33,13 @@ if (isset($_GET['page']) && isset($_GET['aksi'])) {
             } else if ($aksi == 'tambah') {
                 require_once('view/pasien/tambah.php');
             } else if ($aksi == 'update') {
-                require_once('view/pasien/update.php');
+                $pasien->update();
+            } else if ($aksi == 'store') {
+                $pasien->store();
+            } else if ($aksi == 'edit') {
+                $pasien->edit();
+            } else if ($aksi == 'delete') {
+                $pasien->delete();
             }
         } else {
             header("location: index.php?page=auth&aksi=login");
@@ -48,7 +54,13 @@ if (isset($_GET['page']) && isset($_GET['aksi'])) {
             } else if ($aksi == 'tambah') {
                 require_once('view/poliklinik/tambah.php');
             } else if ($aksi == 'update') {
-                require_once('view/poliklinik/update.php');
+                $poliklinik->update();
+            } else if ($aksi == 'store') {
+                $poliklinik->store();
+            } else if ($aksi == 'delete') {
+                $poliklinik->delete();
+            } else if ($aksi == 'edit') {
+                $poliklinik->edit();
             }
         } else {
             header("location: index.php?page=auth&aksi=login");

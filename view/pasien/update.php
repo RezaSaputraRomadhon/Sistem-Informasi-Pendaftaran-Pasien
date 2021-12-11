@@ -28,23 +28,27 @@
                     <h6 class="m-0 font-weight-bold text-dark-blue">Update Data Pasien</h6>
                 </div>
                 <div class="card-body">
-                    <form action="" method="POST">
+                    <form action="index.php?page=pasien&aksi=edit" method="POST">
                         <div class="form-group">
                             <label>Nama</label>
-                            <input type="hidden" class="form-control" id="id" name="id" value="1">
-                            <input type="text" class="form-control" id="nama" name="nama" value="Baktiar Ridho Akbar">
+                            <input type="hidden" class="form-control" id="id" name="id" value="<?= $data['id_pasien'] ?>">
+                            <input type="text" class="form-control" id="nama" name="nama" value="<?= $data['nama'] ?>">
                         </div>
                         <div class="form-group">
                             <label>Email</label>
-                            <input type="email" class="form-control" id="email" name="email" value="baktiar@gmail.com">
+                            <input type="email" class="form-control" id="email" name="email" value="<?= $data['email'] ?>">
                         </div>
                         <div class="form-group">
                             <label>No Hp</label>
-                            <input type="number" class="form-control" id="noHp" name="noHp" value="0998988655">
+                            <input type="number" class="form-control" id="noHp" name="noHp" value="<?= $data['no_telp'] ?>">
+                        </div>
+                        <div class="form-group">
+                            <label>Pekerjaan</label>
+                            <input type="text" class="form-control" id="pekerjaan" name="pekerjaan" value="<?= $data['pekerjaan'] ?>">
                         </div>
                         <div class="form-group">
                             <label>Alamat</label>
-                            <input type="text" class="form-control" id="alamat" name="alamat" value="sidoarjo">
+                            <input type="text" class="form-control" id="alamat" name="alamat" value="<?= $data['alamat'] ?>">
                         </div>
                         <button type="submit" class="btn btn-dark-blue">Submit</button>
                     </form>
