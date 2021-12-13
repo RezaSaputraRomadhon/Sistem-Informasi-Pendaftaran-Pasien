@@ -8,6 +8,7 @@ require_once("Model/jenisObatModel.php");
 require_once("Model/kategoriObatModel.php");
 require_once("Model/poliklinikModel.php");
 require_once("Model/pasienModel.php");
+require_once("Model/transaksiModel.php");
 //require_once("Model/regristrasiModel.php");
 
 require_once("Controller/authController.php");
@@ -17,6 +18,7 @@ require_once("Controller/kategoriObatController.php");
 require_once("Controller/poliklinikController.php");
 require_once("Controller/pasienController.php");
 require_once("Controller/menuController.php");
+require_once("Controller/transaksiController.php");
 //require_once("Controller/regristrasiController.php");
 
 if (isset($_GET['page']) && isset($_GET['aksi'])) {
@@ -98,10 +100,11 @@ if (isset($_GET['page']) && isset($_GET['aksi'])) {
         }
         $menu->footer();
     } else if ($page == 'transaksi') {
+        $transaksi = new transaksiController();
         $menu->header(2);
         if ($_SESSION['role'] == 'admin obat') {
             if ($aksi == 'view') {
-                require_once('view/transaksi/index.php');
+                $transaksi->view();
             } else if ($aksi == 'tambah') {
                 require_once('view/transaksi/tambah.php');
             } else if ($aksi == 'update') {

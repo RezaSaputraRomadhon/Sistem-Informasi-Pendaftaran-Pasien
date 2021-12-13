@@ -32,7 +32,8 @@ class authController
 
     public function logout()
     {
-        session_destroy();
+        unset($_SESSION['role']);
+        unset($_SESSION['admin']);
         require_once('view/auth/index.php');
     }
 

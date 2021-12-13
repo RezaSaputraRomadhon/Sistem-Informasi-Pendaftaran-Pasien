@@ -59,24 +59,24 @@
                             <th>No</th>
                             <th>Pasien</th>
                             <th>Tanggal</th>
-                            <th>Jumlah Obat</th>
                             <th>Total Harga</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Muhammad Mudi</td>
-                            <td>11/7/2021</td>
-                            <td>3</td>
-                            <td>50.000</td>
-                            <td>
-                                <a href="" class="btn btn-dark"><i class="fas fa-print"></i></a>
-                                <a href="index.php?page=transaksi&aksi=detail" class="btn btn-dark-blue">Lihat Detail</a>
-                            </td>
-                        </tr>
-
+                        <?php $no = 1;
+                        foreach ($data as $row) : ?>
+                            <tr>
+                                <td><?= $no++ ?></td>
+                                <td><?= $row['nama'] ?></td>
+                                <td><?= $row['tgl'] ?></td>
+                                <td><?= $row['total_harga'] ?></td>
+                                <td>
+                                    <a href="" class="btn btn-dark"><i class="fas fa-print"></i></a>
+                                    <a href="index.php?page=transaksi&aksi=detail" class="btn btn-dark-blue">Lihat Detail</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
