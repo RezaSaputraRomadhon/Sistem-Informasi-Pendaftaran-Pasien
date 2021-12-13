@@ -112,7 +112,7 @@ if (isset($_GET['page']) && isset($_GET['aksi'])) {
             } else if ($aksi == 'checkout') {
                 require_once('view/transaksi/checkout.php');
             } else if ($aksi == 'detail') {
-                require_once('view/transaksi/detail.php');
+                $transaksi->detail();
             }
         } else {
             header("location: index.php?page=auth&aksi=login");

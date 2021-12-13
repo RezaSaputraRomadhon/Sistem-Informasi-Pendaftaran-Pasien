@@ -33,9 +33,9 @@
                         <div class="form-group">
                             <label>Pasien</label>
                             <select class="form-control" name="pasien" id="pasien">
-                                <option value="Muhammad Mudi">Muhammad Mudi</option>
-                                <option value="Baktiar Ridho Akbar">Baktiar Ridho Akbar</option>
-                                <option value="Bahrul Fahmi">Bahrul Fahmi</option>
+                                <?php foreach ($data1 as $row) : ?>
+                                    <option value="<?= $row['id'] ?>"><?= $row['nama'] ?></option>
+                                <?php endforeach; ?>
                             </select>
                         </div>
                     </div>
@@ -73,7 +73,7 @@
                                 <td><?= $row['total_harga'] ?></td>
                                 <td>
                                     <a href="" class="btn btn-dark"><i class="fas fa-print"></i></a>
-                                    <a href="index.php?page=transaksi&aksi=detail" class="btn btn-dark-blue">Lihat Detail</a>
+                                    <a href="index.php?page=transaksi&aksi=detail&id=<?= $row['id'] ?>" class="btn btn-dark-blue">Lihat Detail</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

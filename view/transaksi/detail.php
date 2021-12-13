@@ -29,15 +29,17 @@
                         </tr>
                     </thead>
                     <tbody>
-
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Paracetamol</td>
-                            <td>Obat Bebas</td>
-                            <td>Pil</td>
-                            <td>2</td>
-                            <td>20000</td>
-                        </tr>
+                        <?php $no = 1;
+                        foreach ($data as $row) : ?>
+                            <tr>
+                                <th scope="row"><?= $no++ ?></th>
+                                <td><?= $row['nama'] ?></td>
+                                <td><?= $row['kategori'] ?></td>
+                                <td><?= $row['jenis'] ?></td>
+                                <td><?= $row['jumlah_obat'] ?></td>
+                                <td><?= $row['jumlah_harga'] ?></td>
+                            </tr>
+                        <?php endforeach; ?>
                         <tr>
                             <th>
                             </th>
@@ -45,11 +47,11 @@
                             <td></td>
                             <td></td>
                             <td>Total Harga</td>
-                            <td>20000</td>
+                            <td><?= $pasien['total_harga'] ?></td>
                         </tr>
-                        <h6 class="m-0 font-weight-bold text-dark float-left">Nama : Muhammad Mudi</h6><br>
-                        <h6 class="m-0 font-weight-bold text-dark float-left">Alamat : Sidoarjo</h6><br>
-                        <h6 class="m-0 font-weight-bold text-dark float-left">Tanggal : 11/7/2021</h6>
+                        <h6 class="m-0 font-weight-bold text-dark float-left">Nama : <?= $pasien['nama'] ?></h6><br>
+                        <h6 class="m-0 font-weight-bold text-dark float-left">Alamat : <?= $pasien['alamat'] ?></h6><br>
+                        <h6 class="m-0 font-weight-bold text-dark float-left">Tanggal : <?= $pasien['tgl'] ?></h6>
                     </tbody>
                 </table>
             </div>
