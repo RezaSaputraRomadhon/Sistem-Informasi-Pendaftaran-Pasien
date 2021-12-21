@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 06 Des 2021 pada 16.24
--- Versi server: 10.4.19-MariaDB
--- Versi PHP: 7.4.19
+-- Generation Time: Dec 21, 2021 at 05:06 AM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 7.4.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,27 +24,28 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `admin`
+-- Table structure for table `admin`
 --
 
 CREATE TABLE `admin` (
   `no_induk` int(11) NOT NULL,
   `nama` varchar(50) NOT NULL,
-  `role` varchar(50) NOT NULL
+  `role` varchar(50) NOT NULL,
+  `password` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `admin`
+-- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`no_induk`, `nama`, `role`) VALUES
-(321, 'syahrul riza', 'admin obat'),
-(456, 'reza', 'admin regristrasi');
+INSERT INTO `admin` (`no_induk`, `nama`, `role`, `password`) VALUES
+(321, 'syahrul riza', 'admin obat', 'adminobat123'),
+(456, 'reza', 'admin regristrasi', 'adminregristrasi123');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `detailtransaksi`
+-- Table structure for table `detailtransaksi`
 --
 
 CREATE TABLE `detailtransaksi` (
@@ -53,10 +54,17 @@ CREATE TABLE `detailtransaksi` (
   `jumlah_obat` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `detailtransaksi`
+--
+
+INSERT INTO `detailtransaksi` (`id_obat`, `id_transaksi`, `jumlah_obat`) VALUES
+(2, 1, 3);
+
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jenis`
+-- Table structure for table `jenis`
 --
 
 CREATE TABLE `jenis` (
@@ -65,17 +73,16 @@ CREATE TABLE `jenis` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `jenis`
+-- Dumping data for table `jenis`
 --
 
 INSERT INTO `jenis` (`id_jenis`, `jenis_obat`) VALUES
-(1, 'tablet 1233'),
-(17, 'tes');
+(1, 'tablet');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kategori`
+-- Table structure for table `kategori`
 --
 
 CREATE TABLE `kategori` (
@@ -84,18 +91,17 @@ CREATE TABLE `kategori` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `kategori`
+-- Dumping data for table `kategori`
 --
 
 INSERT INTO `kategori` (`id_kategori`, `kategori_obat`) VALUES
 (1, 'obat bebas'),
-(2, 'obat tertutup'),
-(6, 'bbbbbbbbbbbbbb');
+(2, 'obat tertutup');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `obat`
+-- Table structure for table `obat`
 --
 
 CREATE TABLE `obat` (
@@ -108,17 +114,18 @@ CREATE TABLE `obat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `obat`
+-- Dumping data for table `obat`
 --
 
 INSERT INTO `obat` (`id_obat`, `id_jenis`, `id_kategori`, `nama_obat`, `harga`, `stock`) VALUES
-(1, 1, 1, 'paracetamol', 10000, 20),
-(2, 1, 1, 'Amoxcilin', 20000, 20);
+(1, 1, 1, 'paracetamol', 10000, 7),
+(2, 1, 1, 'Amoxcilin', 20000, 16),
+(3, 1, 1, 'Paramex', 5000, 16);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pasien`
+-- Table structure for table `pasien`
 --
 
 CREATE TABLE `pasien` (
@@ -131,16 +138,17 @@ CREATE TABLE `pasien` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `pasien`
+-- Dumping data for table `pasien`
 --
 
 INSERT INTO `pasien` (`id_pasien`, `no_telp`, `alamat`, `nama`, `email`, `pekerjaan`) VALUES
-(2, '08123456777', 'rumah', 'tes', 'tes@gmail.com', 'mahasiswa');
+(1, '0878877656', 'surabaya', 'slamet', 'slamet@gmail.com', 'karyawan swasta'),
+(2, '0899998877', 'surabaya', 'faris', 'faris@gmail.com', 'mahasiswa');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `poliklinik`
+-- Table structure for table `poliklinik`
 --
 
 CREATE TABLE `poliklinik` (
@@ -149,16 +157,16 @@ CREATE TABLE `poliklinik` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `poliklinik`
+-- Dumping data for table `poliklinik`
 --
 
 INSERT INTO `poliklinik` (`id_poliklinik`, `nama`) VALUES
-(4, 'Poliklinik Mata');
+(1, 'Poli Umum');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `regristrasi`
+-- Table structure for table `regristrasi`
 --
 
 CREATE TABLE `regristrasi` (
@@ -170,56 +178,66 @@ CREATE TABLE `regristrasi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `regristrasi`
+-- Dumping data for table `regristrasi`
 --
 
 INSERT INTO `regristrasi` (`id_regristrasi`, `id_poliklinik`, `no_induk`, `id_pasien`, `tgl_regristrasi`) VALUES
-(1, 4, 456, 2, '2021-12-08');
+(1, 1, 456, 1, '2021-12-11'),
+(2, 1, 456, 2, '2021-12-13');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `transaksiobat`
+-- Table structure for table `transaksiobat`
 --
 
 CREATE TABLE `transaksiobat` (
   `id_transaksi` int(11) NOT NULL,
   `id_regristrasi` int(11) NOT NULL,
   `no_induk` int(11) NOT NULL,
-  `tgl_transaksi` date NOT NULL
+  `tgl_transaksi` date NOT NULL,
+  `status_transaksi` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `transaksiobat`
+--
+
+INSERT INTO `transaksiobat` (`id_transaksi`, `id_regristrasi`, `no_induk`, `tgl_transaksi`, `status_transaksi`) VALUES
+(1, 1, 321, '2021-12-11', 1),
+(5, 2, 321, '2021-12-20', 0);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `admin`
+-- Indexes for table `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`no_induk`);
 
 --
--- Indeks untuk tabel `detailtransaksi`
+-- Indexes for table `detailtransaksi`
 --
 ALTER TABLE `detailtransaksi`
   ADD KEY `id_obat` (`id_obat`),
   ADD KEY `id_transaksi` (`id_transaksi`);
 
 --
--- Indeks untuk tabel `jenis`
+-- Indexes for table `jenis`
 --
 ALTER TABLE `jenis`
   ADD PRIMARY KEY (`id_jenis`);
 
 --
--- Indeks untuk tabel `kategori`
+-- Indexes for table `kategori`
 --
 ALTER TABLE `kategori`
   ADD PRIMARY KEY (`id_kategori`);
 
 --
--- Indeks untuk tabel `obat`
+-- Indexes for table `obat`
 --
 ALTER TABLE `obat`
   ADD PRIMARY KEY (`id_obat`),
@@ -227,19 +245,19 @@ ALTER TABLE `obat`
   ADD KEY `id_kategori` (`id_kategori`);
 
 --
--- Indeks untuk tabel `pasien`
+-- Indexes for table `pasien`
 --
 ALTER TABLE `pasien`
   ADD PRIMARY KEY (`id_pasien`);
 
 --
--- Indeks untuk tabel `poliklinik`
+-- Indexes for table `poliklinik`
 --
 ALTER TABLE `poliklinik`
   ADD PRIMARY KEY (`id_poliklinik`);
 
 --
--- Indeks untuk tabel `regristrasi`
+-- Indexes for table `regristrasi`
 --
 ALTER TABLE `regristrasi`
   ADD PRIMARY KEY (`id_regristrasi`),
@@ -248,7 +266,7 @@ ALTER TABLE `regristrasi`
   ADD KEY `id_pasien` (`id_pasien`);
 
 --
--- Indeks untuk tabel `transaksiobat`
+-- Indexes for table `transaksiobat`
 --
 ALTER TABLE `transaksiobat`
   ADD PRIMARY KEY (`id_transaksi`),
@@ -256,71 +274,71 @@ ALTER TABLE `transaksiobat`
   ADD KEY `no_induk` (`no_induk`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `jenis`
+-- AUTO_INCREMENT for table `jenis`
 --
 ALTER TABLE `jenis`
-  MODIFY `id_jenis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_jenis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- AUTO_INCREMENT untuk tabel `kategori`
+-- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
   MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT untuk tabel `obat`
+-- AUTO_INCREMENT for table `obat`
 --
 ALTER TABLE `obat`
-  MODIFY `id_obat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_obat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `pasien`
+-- AUTO_INCREMENT for table `pasien`
 --
 ALTER TABLE `pasien`
   MODIFY `id_pasien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `poliklinik`
+-- AUTO_INCREMENT for table `poliklinik`
 --
 ALTER TABLE `poliklinik`
-  MODIFY `id_poliklinik` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_poliklinik` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `regristrasi`
+-- AUTO_INCREMENT for table `regristrasi`
 --
 ALTER TABLE `regristrasi`
-  MODIFY `id_regristrasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_regristrasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `transaksiobat`
+-- AUTO_INCREMENT for table `transaksiobat`
 --
 ALTER TABLE `transaksiobat`
-  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `detailtransaksi`
+-- Constraints for table `detailtransaksi`
 --
 ALTER TABLE `detailtransaksi`
   ADD CONSTRAINT `detailtransaksi_ibfk_1` FOREIGN KEY (`id_obat`) REFERENCES `obat` (`id_obat`),
   ADD CONSTRAINT `detailtransaksi_ibfk_2` FOREIGN KEY (`id_transaksi`) REFERENCES `transaksiobat` (`id_transaksi`);
 
 --
--- Ketidakleluasaan untuk tabel `obat`
+-- Constraints for table `obat`
 --
 ALTER TABLE `obat`
   ADD CONSTRAINT `obat_ibfk_1` FOREIGN KEY (`id_jenis`) REFERENCES `jenis` (`id_jenis`),
   ADD CONSTRAINT `obat_ibfk_2` FOREIGN KEY (`id_kategori`) REFERENCES `kategori` (`id_kategori`);
 
 --
--- Ketidakleluasaan untuk tabel `regristrasi`
+-- Constraints for table `regristrasi`
 --
 ALTER TABLE `regristrasi`
   ADD CONSTRAINT `regristrasi_ibfk_1` FOREIGN KEY (`id_poliklinik`) REFERENCES `poliklinik` (`id_poliklinik`),
@@ -328,7 +346,7 @@ ALTER TABLE `regristrasi`
   ADD CONSTRAINT `regristrasi_ibfk_3` FOREIGN KEY (`id_pasien`) REFERENCES `pasien` (`id_pasien`);
 
 --
--- Ketidakleluasaan untuk tabel `transaksiobat`
+-- Constraints for table `transaksiobat`
 --
 ALTER TABLE `transaksiobat`
   ADD CONSTRAINT `transaksiobat_ibfk_1` FOREIGN KEY (`id_regristrasi`) REFERENCES `regristrasi` (`id_regristrasi`),
