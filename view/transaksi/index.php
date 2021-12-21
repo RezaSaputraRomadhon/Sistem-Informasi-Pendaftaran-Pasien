@@ -27,7 +27,7 @@
             <h6 class="m-0 font-weight-bold text-dark-blue">Transaksi Obat</h6>
         </div>
         <div class="card-body">
-            <form action="index.php?page=transaksi&aksi=tambah" method="POST">
+            <form action="index.php?page=transaksi&aksi=storeTransaksi" method="POST">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
@@ -70,7 +70,7 @@
                                 <td><?= $no++ ?></td>
                                 <td><?= $row['nama'] ?></td>
                                 <td><?= $row['tgl'] ?></td>
-                                <td><?= $row['total_harga'] ?></td>
+                                <td><?= number_format($row['total_harga'], 0, ',', '.') ?></td>
                                 <td>
                                     <a href="" class="btn btn-dark"><i class="fas fa-print"></i></a>
                                     <a href="index.php?page=transaksi&aksi=detail&id=<?= $row['id'] ?>" class="btn btn-dark-blue">Lihat Detail</a>

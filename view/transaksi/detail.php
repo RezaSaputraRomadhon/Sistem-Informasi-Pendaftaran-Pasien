@@ -33,11 +33,11 @@
                         foreach ($data as $row) : ?>
                             <tr>
                                 <th scope="row"><?= $no++ ?></th>
-                                <td><?= $row['nama'] ?></td>
+                                <td><?= $row['obat'] ?></td>
                                 <td><?= $row['kategori'] ?></td>
                                 <td><?= $row['jenis'] ?></td>
                                 <td><?= $row['jumlah_obat'] ?></td>
-                                <td><?= $row['jumlah_harga'] ?></td>
+                                <td><?= number_format($row['jumlah_harga'], 0, ',', '.')  ?></td>
                             </tr>
                         <?php endforeach; ?>
                         <tr>
@@ -47,7 +47,7 @@
                             <td></td>
                             <td></td>
                             <td>Total Harga</td>
-                            <td><?= $pasien['total_harga'] ?></td>
+                            <td><?= number_format($pasien['total_harga'], 0, ',', '.')  ?></td>
                         </tr>
                         <h6 class="m-0 font-weight-bold text-dark float-left">Nama : <?= $pasien['nama'] ?></h6><br>
                         <h6 class="m-0 font-weight-bold text-dark float-left">Alamat : <?= $pasien['alamat'] ?></h6><br>

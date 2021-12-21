@@ -72,4 +72,10 @@ class obatModel
         $sql = "UPDATE obat SET nama_obat = '$obat', stock = $stock, harga = $harga, id_jenis = $id_jenis, id_kategori = $id_kategori WHERE id_obat = $id ";
         return koneksi()->query($sql);
     }
+
+    public function prosesDelete($id)
+    {
+        $sql = "DELETE FROM obat WHERE id_obat = $id";
+        return koneksi()->query($sql);
+    }
 }

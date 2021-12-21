@@ -21,6 +21,24 @@
 </head>
 
 <body>
+
+    <?php if ($_SESSION['pesan'] == 'Menambahkan' || $_SESSION['pesan'] == 'Mengupdate' || $_SESSION['pesan'] == 'Menghapus') : ?>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Anda Berhasil <strong><?= $_SESSION['pesan'] ?></strong> Obat
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <?php $_SESSION['pesan'] = 'start'; ?>
+    <?php elseif ($_SESSION['pesan'] == 'Gagal Menambahkan' || $_SESSION['pesan'] == 'Gagal Mengupdate') : ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Anda <strong> <?= $_SESSION['pesan'] ?> </strong> Obat, Karena Jumlah Yang Diinginkan Melebihi Stock
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <?php $_SESSION['pesan'] = 'start'; ?>
+    <?php endif; ?>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -28,13 +46,15 @@
             <a class="m-0 font-weight-bold btn btn-dark-blue float-right" href="index.php?page=transaksi&aksi=checkout">Next</a>
         </div>
         <div class="card-body">
-            <form action="" method="POST">
+            <form action="index.php?page=transaksi&aksi=storeDetailTransaksi" method="POST" onsubmit="return cekFormDetailTransaksi();">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Obat</label>
                             <select class="form-control" name="obat" id="obat">
-                                <option value="Paracetamol (20 Pcs)">Paracetamol (20 Pcs)</option>
+                                <?php foreach ($obat as $row) : ?>
+                                    <option value=" <?= $row['id_obat'] ?> "><?= $row['nama_obat'] . " (" . $row['stock'] . ")" ?></option>
+                                <?php endforeach; ?>
                             </select>
                         </div>
                         <div class="form-group">
@@ -43,7 +63,7 @@
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <button class="btn btn-dark-blue">Submit</button>
+                        <button type="submit" class="btn btn-dark-blue">Submit</button>
                     </div>
                 </div>
             </form>
@@ -52,7 +72,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-dark-blue">Keranjang Muhammad Mudi</h6>
+            <h6 class="m-0 font-weight-bold text-dark-blue">Keranjang <?= $LastData['nama'] ?></h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -62,20 +82,25 @@
                             <th>No</th>
                             <th>Obat</th>
                             <th>Jumlah Obat</th>
+                            <th>Jumlah Harga</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Paracetamol (20 Pcs)</td>
-                            <td>2</td>
-                            <td>
-                                <a href="index.php?page=transaksi&aksi=update" class="btn btn-success">Update</a>
-                                <a href="" class="btn btn-danger">Delete</a>
-                            </td>
-                        </tr>
+                        <?php $no = 1;
+                        foreach ($keranjang as $row) : ?>
 
+                            <tr>
+                                <td><?= $no++; ?></td>
+                                <td><?= $row['obat']  ?></td>
+                                <td><?= $row['jumlah_obat'] ?></td>
+                                <td><?= $row['jumlah_harga'] ?></td>
+                                <td>
+                                    <a href="index.php?page=transaksi&aksi=update&id=<?= $row['id'] ?>&jumlah=<?= $row['jumlah_obat'] ?>&obat=<?= $row['id_obat'] ?>" class="btn btn-success">Update</a>
+                                    <a href="index.php?page=transaksi&aksi=delete&id=<?= $row['id'] ?>&jumlah=<?= $row['jumlah_obat'] ?>&obat=<?= $row['id_obat'] ?>" class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>

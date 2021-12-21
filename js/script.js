@@ -1,6 +1,7 @@
 function cekFormLogin() {
     nama = document.getElementById("nama");
     no_induk = document.getElementById("no_induk");
+    password = document.getElementById("password");
 
 
     if (nama.value == "") {
@@ -10,7 +11,15 @@ function cekFormLogin() {
             text: 'Nama Atau No Induk Tidak Boleh Di Kosongi',
         })
         return false;
-    } else if (nama.value.length <= 3) {
+    } else if(password.value == ""){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Nama Atau No Induk Minimal 3 Karakter',
+        })
+        return false;
+    } 
+    else if (nama.value.length <= 3) {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
@@ -115,14 +124,7 @@ function cekFormObat()
             text: 'Harga Tidak Boleh Di Kosongi',
         })
         return false;
-    } else if(harga.value <= 3){
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Harga Minimal 3 Karakter',
-        })
-        return false;
-    }
+    } 
 
 }
 
@@ -225,3 +227,16 @@ function cekFormPasien()
         return false;
     }
 }
+
+ function cekFormDetailTransaksi()
+ {
+    jumlah = document.getElementsByName("jumlah");
+    if(jumlah.value == ""){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Jumlah Tidak Boleh Di Kosongi',
+        })
+        return false;
+    }
+ }

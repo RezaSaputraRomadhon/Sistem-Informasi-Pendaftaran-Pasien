@@ -31,9 +31,17 @@
             </button>
         </div>
         <?php $_SESSION['pesan'] = 'start'; ?>
-    <?php elseif ($_SESSION['pesan'] == 'Menambahkan' || $_SESSION['pesan'] == 'Mengupdate') : ?>
+    <?php elseif ($_SESSION['pesan'] == 'Menambahkan' || $_SESSION['pesan'] == 'Mengupdate' || $_SESSION['pesan'] == 'Menghapus') : ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             Anda Berhasil <strong><?= $_SESSION['pesan'] ?></strong> Obat
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <?php $_SESSION['pesan'] = 'start'; ?>
+    <?php elseif ($_SESSION['pesan'] == 'gagal') : ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Anda Gagal <strong>Menghapus</strong> Obat, Karena Obat Tersebut Sedang Dipakai
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -67,11 +75,12 @@
                                 <td><?= $no++ ?></td>
                                 <td><?= $row['obat'] ?></td>
                                 <td><?= $row['stock'] ?></td>
-                                <td><?= $row['harga'] ?></td>
+                                <td><?= number_format($row['harga'], 0, ',', '.') ?></td>
                                 <td><?= $row['kategori'] ?></td>
                                 <td><?= $row['jenis'] ?></td>
                                 <td>
                                     <a href="index.php?page=obat&aksi=update&id=<?= $row['id'] ?>" class="btn btn-success">Update</a>
+                                    <a href="index.php?page=obat&aksi=delete&id=<?= $row['id'] ?>" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

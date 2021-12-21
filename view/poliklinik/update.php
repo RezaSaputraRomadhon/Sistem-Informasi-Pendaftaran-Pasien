@@ -27,7 +27,7 @@
             <h6 class="m-0 font-weight-bold text-dark-blue">Update Data Poliklinik</h6>
         </div>
         <div class="card-body">
-            <form action="index.php?page=poliklinik&aksi=edit" method="POST">
+            <form action="index.php?page=poliklinik&aksi=edit" method="POST" onsubmit="return cekFormPoliklinik()">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">

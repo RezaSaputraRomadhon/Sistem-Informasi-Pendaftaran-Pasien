@@ -94,6 +94,8 @@ if (isset($_GET['page']) && isset($_GET['aksi'])) {
                 $obat->update();
             } else if ($aksi == 'edit') {
                 $obat->edit();
+            } else if ($aksi == 'delete') {
+                $obat->delete();
             }
         } else {
             header("location: index.php?page=auth&aksi=login");
@@ -106,13 +108,21 @@ if (isset($_GET['page']) && isset($_GET['aksi'])) {
             if ($aksi == 'view') {
                 $transaksi->view();
             } else if ($aksi == 'tambah') {
-                require_once('view/transaksi/tambah.php');
+                $transaksi->tambah();
             } else if ($aksi == 'update') {
-                require_once('view/transaksi/update.php');
+                $transaksi->update();
             } else if ($aksi == 'checkout') {
                 require_once('view/transaksi/checkout.php');
             } else if ($aksi == 'detail') {
                 $transaksi->detail();
+            } else if ($aksi == 'storeTransaksi') {
+                $transaksi->storeTransaksi();
+            } else if ($aksi == 'storeDetailTransaksi') {
+                $transaksi->storeDetailTransaksi();
+            } else if ($aksi == 'delete') {
+                $transaksi->delete();
+            } else if ($aksi == 'edit') {
+                $transaksi->edit();
             }
         } else {
             header("location: index.php?page=auth&aksi=login");

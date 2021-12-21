@@ -66,4 +66,16 @@ class obatController
             header("location: index.php?page=obat&aksi=update&id=$id");
         }
     }
+
+    public function delete()
+    {
+        $id = htmlspecialchars($_GET['id']);
+        if ($this->model->prosesDelete($id)) {
+            $_SESSION['pesan'] = 'Menghapus';
+            header("location: index.php?page=obat&aksi=view");
+        } else {
+            $_SESSION['pesan'] = 'gagal';
+            header("location: index.php?page=obat&aksi=view");
+        }
+    }
 }

@@ -26,7 +26,7 @@
             <h6 class="m-0 font-weight-bold text-dark-blue">Tambah Data Obat</h6>
         </div>
         <div class="card-body">
-            <form action="index.php?page=obat&aksi=store" method="POST">
+            <form action="index.php?page=obat&aksi=store" method="POST" onsubmit="return cekFormObat()">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">

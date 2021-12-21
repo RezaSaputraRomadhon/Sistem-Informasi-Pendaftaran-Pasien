@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css\bootstrap.min.css">
     <!-- SweetAlert2 -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="shortcut icon" type="image/png" href="img/favicon.ico">
 
     <style>
         body {
@@ -30,20 +31,18 @@
 
 <body>
 
-    <?php if (!$_SESSION['pesan']) :
-        $_SESSION['pesan'] = 'start';
-    ?>
-    <?php else : ?>
-        <?php if ($_SESSION['pesan'] == 'gagal') : ?>
-            <script>
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Nama atau No induk Salah',
-                })
-            </script>
-        <?php endif; ?>
+    <?php isset($_SESSION['pesan']) ? " " : $_SESSION['pesan'] = 'start'; ?>
+
+    <?php if ($_SESSION['pesan'] == 'gagal') : ?>
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Nama atau No induk Salah',
+            })
+        </script>
     <?php endif; ?>
+
 
     <div class="container mt-5">
         <div class="col-12 mt-5">
@@ -65,6 +64,10 @@
                         <div class="form-group">
                             <label>Nama</label>
                             <input type="text" class="form-control" name="nama" id="nama">
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control" name="password" id="password">
                         </div>
                         <button type="submit" class="btn btn-primary form-control">Login</button>
                     </form>

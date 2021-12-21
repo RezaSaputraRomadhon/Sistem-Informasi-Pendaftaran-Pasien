@@ -12,8 +12,9 @@ class authController
     {
         $no_induk = $_POST['no_induk'];
         $nama = $_POST['nama'];
-        $data = $this->model->prosesAuthAdminRegristrasi($nama, $no_induk);
-        $data2 = $this->model->prosesAuthAdminObat($nama, $no_induk);
+        $password = $_POST['password'];
+        $data = $this->model->prosesAuthAdminRegristrasi($nama, $no_induk, $password);
+        $data2 = $this->model->prosesAuthAdminObat($nama, $no_induk, $password);
         if ($data) {
             $_SESSION['role'] = 'admin regristrasi';
             $_SESSION['admin'] = $data;
@@ -32,8 +33,7 @@ class authController
 
     public function logout()
     {
-        unset($_SESSION['role']);
-        unset($_SESSION['admin']);
+        session_destroy();
         require_once('view/auth/index.php');
     }
 

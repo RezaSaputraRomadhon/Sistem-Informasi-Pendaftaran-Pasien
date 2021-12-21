@@ -48,8 +48,12 @@ class kategoriObatController
     public function delete()
     {
         $id = htmlspecialchars($_GET['id']);
-        $_SESSION['pesan'] = 'Menghapus';
-        $this->model->prosesDelete($id);
-        header("location: index.php?page=kategoriobat&aksi=view");
+        if ($this->model->prosesDelete($id)) {
+            $_SESSION['pesan'] = 'Menghapus';
+            header("location: index.php?page=kategoriobat&aksi=view");
+        } else {
+            $_SESSION['pesan'] = 'gagal';
+            header("location: index.php?page=kategoriobat&aksi=view");
+        }
     }
 }

@@ -24,7 +24,15 @@
 
     <?php if ($_SESSION['pesan'] == 'Menambahkan' || $_SESSION['pesan'] == 'Mengupdate' || $_SESSION['pesan'] == 'Menghapus') : ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-            Anda Berhasil <strong><?= $_SESSION['pesan'] ?></strong> Kategori Obat
+            Anda Berhasil <strong><?= $_SESSION['pesan'] ?></strong> Jenis Obat
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <?php $_SESSION['pesan'] = 'start'; ?>
+    <?php elseif ($_SESSION['pesan'] == 'gagal') : ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Anda Gagal <strong>Menghapus</strong> Kategori Obat, Karena Kategori Obat Tersebut Sedang Dipakai
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>

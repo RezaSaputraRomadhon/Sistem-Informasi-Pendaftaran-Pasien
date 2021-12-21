@@ -26,7 +26,7 @@
             <h6 class="m-0 font-weight-bold text-dark-blue">Update Data Obat</h6>
         </div>
         <div class="card-body">
-            <form action="index.php?page=obat&aksi=edit" method="POST">
+            <form action="index.php?page=obat&aksi=edit" method="POST" onsubmit="return cekFormObat()">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
@@ -54,7 +54,7 @@
                                 <?php if ($data['id_jenis'] == $row['id_jenis']) : ?>
                                     <option value="<?= $row["id_jenis"] ?>" selected><?= $row["jenis_obat"] ?></option>
                                 <?php else : ?>
-                                <option value="<?= $row["id_jenis"] ?>"><?= $row["jenis_obat"] ?></option>
+                                    <option value="<?= $row["id_jenis"] ?>"><?= $row["jenis_obat"] ?></option>
                                 <?php endif; ?>
                             <?php endforeach; ?>
                         </select>
@@ -66,7 +66,7 @@
                                 <?php if ($data['id_kategori'] == $row['id_kategori']) : ?>
                                     <option value="<?= $row['id_kategori'] ?>" selected><?= $row['kategori_obat'] ?></option>
                                 <?php else : ?>
-                                <option value="<?= $row['id_kategori'] ?>"><?= $row['kategori_obat'] ?></option>
+                                    <option value="<?= $row['id_kategori'] ?>"><?= $row['kategori_obat'] ?></option>
                                 <?php endif; ?>
                             <?php endforeach; ?>
                         </select>

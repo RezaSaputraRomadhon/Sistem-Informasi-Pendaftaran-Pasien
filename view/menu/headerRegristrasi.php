@@ -21,6 +21,7 @@
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <!-- My CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" type="image/png" href="img/favicon.ico">
     <style>
         .navbar-nav.sidebar {
             background-image: url('img/circle-blues.png');

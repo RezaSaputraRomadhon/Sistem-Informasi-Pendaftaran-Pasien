@@ -50,8 +50,12 @@ class jenisObatController
     public function delete()
     {
         $id = htmlspecialchars($_GET['id']);
-        $this->model->prosesDelete($id);
-        $_SESSION['pesan'] = 'Menghapus';
-        header("location: index.php?page=jenisobat&aksi=view");
+        if ($this->model->prosesDelete($id)) {
+            $_SESSION['pesan'] = 'Menghapus';
+            header("location: index.php?page=jenisobat&aksi=view");
+        } else {
+            $_SESSION['pesan'] = 'gagal';
+            header("location: index.php?page=jenisobat&aksi=view");
+        }
     }
 }
