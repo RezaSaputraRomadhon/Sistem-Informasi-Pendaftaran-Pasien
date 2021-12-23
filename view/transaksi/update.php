@@ -28,7 +28,7 @@
             <a href="index.php?page=transaksi&aksi=tambah" class="m-0 font-weight-bold text-white btn btn-success float-right">Kembali</a>
         </div>
         <div class="card-body">
-            <form action="index.php?page=transaksi&aksi=edit" method="POST" onsubmit="return cekFormDetailTransaksi();">
+            <form action="index.php?page=transaksi&aksi=edit" method="POST" onsubmit="return cekFormDetailTransaksi()">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
@@ -39,9 +39,9 @@
                             <select class="form-control" name="obat" id="obat">
                                 <?php foreach ($obat as $row) : ?>
                                     <?php if ($data['id_obat'] == $row['id_obat']) : ?>
-                                        <option value=" <?= $row['id_obat'] ?> " selected><?= $row['nama_obat'] . " (" . $row['stock'] . ")" ?></option>
+                                        <option value="<?= $row['id_obat'] ?>" selected><?= $row['nama_obat'] . " (" . $row['stock'] . ")" ?></option>
                                     <?php else : ?>
-                                        <option value=" <?= $row['id_obat'] ?> "><?= $row['nama_obat'] . " (" . $row['stock'] . ")" ?></option>
+                                        <option value="<?= $row['id_obat'] ?>"><?= $row['nama_obat'] . " (" . $row['stock'] . ")" ?></option>
                                     <?php endif; ?>
                                 <?php endforeach; ?>
                             </select>

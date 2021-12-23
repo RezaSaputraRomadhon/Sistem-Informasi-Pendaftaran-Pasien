@@ -93,6 +93,8 @@ class transaksiController
         $obat = $this->model->getObat();
         $data = $this->model->getDetailTransaksi($idTransaksi, $idObat, $jumlah);
         require_once('view/transaksi/update.php');
+        extract($data, EXTR_SKIP);
+        extract($obat, EXTR_SKIP);
     }
 
     public function edit()
@@ -102,6 +104,7 @@ class transaksiController
         $idObatBaru = htmlspecialchars($_POST['obat']);
         $jumlahLama = htmlspecialchars($_POST['jumlahLama']);
         $jumlahBaru = htmlspecialchars($_POST['jumlah']);
+        $stok = [];
         if ($idObatBaru == $idObatLama) {
             if ($jumlahBaru > $jumlahLama) {
                 $stok = $this->model->getStock3($jumlahBaru, $jumlahLama, $idObatBaru);
