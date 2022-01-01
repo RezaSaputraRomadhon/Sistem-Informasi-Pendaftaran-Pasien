@@ -26,15 +26,15 @@
             <h6 class="m-0 font-weight-bold text-dark-blue">Tambah Data Poliklinik</h6>
         </div>
         <div class="card-body">
-            <form action="" method="POST">
+            <form action="index.php?page=regristrasi&aksi=store" method="POST">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Pasien</label>
                             <select class="form-control" name="pasien" id="pasien">
-                                <option value="Muhammad Mudi">Muhammad Mudi</option>
-                                <option value="Baktiar Ridho Akbar">Baktiar Ridho Akbar</option>
-                                <option value="Bahrul Fahmi">Bahrul Fahmi</option>
+                                <?php foreach ($data1 as $row) : ?>
+                                    <option value="<?= $row['id_pasien'] ?>"><?= $row['nama'] ?></option>
+                                <?php endforeach; ?>
                             </select>
                         </div>
                     </div>
@@ -42,9 +42,9 @@
                         <div class="form-group">
                             <label>Poliklinik</label>
                             <select class="form-control" name="poliklinik" id="poliklinik">
-                                <option value="Poli Umum">Poli Umum</option>
-                                <option value="Poli Gigi">Poli Gigi</option>
-                                <option value="Bahrul Fahmi">Poli Saraf</option>
+                                <?php foreach ($data2 as $row) : ?>
+                                    <option value="<?= $row['id_poliklinik'] ?>"><?= $row['nama'] ?></option>
+                                <?php endforeach; ?>
                             </select>
                         </div>
                     </div>

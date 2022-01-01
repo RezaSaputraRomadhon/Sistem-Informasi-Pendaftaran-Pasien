@@ -22,7 +22,7 @@ class transaksiModel
 
     public function getNamaRegristrasi()
     {
-        $sql = "SELECT pasien.nama AS nama, regristrasi.id_regristrasi AS id FROM regristrasi JOIN pasien ON regristrasi.id_pasien = pasien.id_pasien ORDER BY id_regristrasi DESC";
+        $sql = "SELECT pasien.nama AS nama, regristrasi.id_regristrasi AS id FROM regristrasi JOIN pasien ON regristrasi.id_pasien = pasien.id_pasien WHERE regristrasi.status = 1 ORDER BY id_regristrasi DESC";
         $query = koneksi()->query($sql);
         $hasil = [];
         while ($data = $query->fetch_assoc()) {
@@ -60,7 +60,7 @@ class transaksiModel
 
     public function getLastData()
     {
-        $sql = "SELECT transaksiobat.id_transaksi AS id, pasien.nama AS nama FROM transaksiobat
+        $sql = "SELECT transaksiobat.id_transaksi AS id, pasien.id_pasien as id_pasien, pasien.nama AS nama, regristrasi.id_regristrasi as id_regristrasi FROM transaksiobat
         JOIN regristrasi ON transaksiobat.id_regristrasi = regristrasi.id_regristrasi
         JOIN pasien ON regristrasi.id_pasien = pasien.id_pasien
         ORDER BY id_transaksi DESC LIMIT 1";
@@ -140,6 +140,18 @@ class transaksiModel
     {
         $sql = "UPDATE detailtransaksi SET jumlah_obat = $jumlahBaru, id_obat = $idObatBaru WHERE id_transaksi = $idTransaksi AND 
         jumlah_obat = $jumlahLama AND id_obat = $idObatLama LIMIT 1";
+        return koneksi()->query($sql);
+    }
+
+    public function prosesUpdateStatusTransaksi($id)
+    {
+        $sql = "UPDATE transaksiobat SET status_transaksi = 1 WHERE id_transaksi = $id";
+        return koneksi()->query($sql);
+    }
+
+    public function prosesUpdateStatusRegristrasi($id)
+    {
+        $sql = "UPDATE regristrasi SET status = 0 WHERE id_regristrasi = $id";
         return koneksi()->query($sql);
     }
 }

@@ -9,7 +9,7 @@ require_once("Model/kategoriObatModel.php");
 require_once("Model/poliklinikModel.php");
 require_once("Model/pasienModel.php");
 require_once("Model/transaksiModel.php");
-//require_once("Model/regristrasiModel.php");
+require_once("Model/regristrasiModel.php");
 
 require_once("Controller/authController.php");
 require_once("Controller/obatController.php");
@@ -19,7 +19,7 @@ require_once("Controller/poliklinikController.php");
 require_once("Controller/pasienController.php");
 require_once("Controller/menuController.php");
 require_once("Controller/transaksiController.php");
-//require_once("Controller/regristrasiController.php");
+require_once("Controller/regristrasiController.php");
 
 if (isset($_GET['page']) && isset($_GET['aksi'])) {
     session_start();
@@ -69,12 +69,15 @@ if (isset($_GET['page']) && isset($_GET['aksi'])) {
         }
         $menu->footer();
     } else if ($page == 'regristrasi') {
+        $regristrasi = new regristrasiController();
         $menu->header(1);
         if ($_SESSION['role'] == 'admin regristrasi') {
             if ($aksi == 'view') {
-                require_once('view/regristrasi/index.php');
+                $regristrasi->view();
             } else if ($aksi == 'tambah') {
-                require_once('view/regristrasi/tambah.php');
+                $regristrasi->tambah();
+            } else if ($aksi == 'store') {
+                $regristrasi->store();
             }
         } else {
             header("location: index.php?page=auth&aksi=login");
@@ -112,7 +115,7 @@ if (isset($_GET['page']) && isset($_GET['aksi'])) {
             } else if ($aksi == 'update') {
                 $transaksi->update();
             } else if ($aksi == 'checkout') {
-                require_once('view/transaksi/checkout.php');
+                $transaksi->checkout();
             } else if ($aksi == 'detail') {
                 $transaksi->detail();
             } else if ($aksi == 'storeTransaksi') {
@@ -123,6 +126,8 @@ if (isset($_GET['page']) && isset($_GET['aksi'])) {
                 $transaksi->delete();
             } else if ($aksi == 'edit') {
                 $transaksi->edit();
+            } else if ($aksi == 'transaksi') {
+                $transaksi->transaksi();
             }
         } else {
             header("location: index.php?page=auth&aksi=login");

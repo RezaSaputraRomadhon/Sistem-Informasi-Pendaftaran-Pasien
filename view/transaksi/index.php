@@ -21,6 +21,15 @@
 </head>
 
 <body>
+    <?php if ($_SESSION['pesan'] == 'Berhasil') : ?>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Anda <strong><?= $_SESSION['pesan'] ?></strong> Melakukan Transaksi
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <?php $_SESSION['pesan'] = 'start'; ?>
+    <?php endif; ?>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -69,12 +78,18 @@
                             <tr>
                                 <td><?= $no++ ?></td>
                                 <td><?= $row['nama'] ?></td>
-                                <td><?= $row['tgl'] ?></td>
+                                <td><?= date('d F Y', strtotime($row['tgl'])) ?></td>
                                 <td><?= number_format($row['total_harga'], 0, ',', '.') ?></td>
-                                <td>
-                                    <a href="" class="btn btn-dark"><i class="fas fa-print"></i></a>
-                                    <a href="index.php?page=transaksi&aksi=detail&id=<?= $row['id'] ?>" class="btn btn-dark-blue">Lihat Detail</a>
-                                </td>
+                                <?php if ($row['status'] == 1) : ?>
+                                    <td>
+                                        <a href="" class="btn btn-dark"><i class="fas fa-print"></i></a>
+                                        <a href="index.php?page=transaksi&aksi=detail&id=<?= $row['id'] ?>" class="btn btn-dark-blue">Lihat Detail</a>
+                                    </td>
+                                <?php else : ?>
+                                    <td>
+                                        <a href="index.php?page=transaksi&aksi=tambah&id=<?= $row['id'] ?>" class="btn btn-success">Checkout</a>
+                                    </td>
+                                <?php endif; ?>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>

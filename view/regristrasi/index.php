@@ -23,7 +23,7 @@
 <body>
     <?php if ($_SESSION['pesan'] == 'Menambahkan' || $_SESSION['pesan'] == 'Mengupdate') : ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-            Anda Berhasil <strong><?= $_SESSION['pesan'] ?></strong> Jenis Obat
+            Anda Berhasil <strong><?= $_SESSION['pesan'] ?></strong> Regristrasi
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -48,17 +48,18 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <?php $no = 1;
+                        foreach ($data as $row) : ?>
                         <tr>
-                            <td>1</td>
-                            <td>Muhammad Mudi</td>
-                            <td>Poli Umum</td>
-                            <td>11/7/2021</td>
+                            <td><?= $no++ ?></td>
+                            <td><?= $row['nama'] ?></td>
+                            <td><?= $row['namaPoliklinik'] ?></td>
+                            <td><?= $row['tgl'] ?></td>
                             <td>
                                 <a href="" class="btn btn-primary" style="font-size: 16px;"><i class="fas fa-print"></i></a>
                             </td>
                         </tr>
-
-
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>

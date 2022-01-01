@@ -13,7 +13,7 @@ class pasienModel
         return $hasil;
     }
 
-    public function prosesStore($nama,$email,$noHp,$pekerjaan,$alamat)
+    public function prosesStore($nama, $email, $noHp, $pekerjaan, $alamat)
     {
         $sql = "INSERT INTO pasien(nama,email,no_telp,pekerjaan,alamat) VALUES('$nama','$email','$noHp','$pekerjaan','$alamat')";
         return koneksi()->query($sql);
@@ -26,7 +26,7 @@ class pasienModel
         return $query->fetch_assoc();
     }
 
-    public function prosesEdit($id,$nama,$email,$noHp,$pekerjaan,$alamat)
+    public function prosesEdit($id, $nama, $email, $noHp, $pekerjaan, $alamat)
     {
         $sql = "UPDATE pasien SET nama = '$nama', email = '$email', no_telp = '$noHp', pekerjaan = '$pekerjaan', alamat = '$alamat' WHERE id_pasien = $id";
         return koneksi()->query($sql);

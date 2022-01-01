@@ -43,12 +43,14 @@ class transaksiController
 
     public function tambah()
     {
+
         $LastData = $this->model->getLastData();
         $keranjang = $this->model->getDataObatPasien($LastData['id']);
         $obat = $this->model->getObat();
-        extract($LastData);
-        extract($keranjang);
-        extract($obat);
+
+        extract($LastData, EXTR_SKIP);
+        extract($keranjang, EXTR_SKIP);
+        extract($obat, EXTR_SKIP);
         require_once('view/transaksi/tambah.php');
     }
 
@@ -131,6 +133,33 @@ class transaksiController
         } else {
             $_SESSION['pesan'] = 'Gagal Mengupdate';
             header("location: index.php?page=transaksi&aksi=tambah");
+        }
+    }
+
+    public function checkout()
+    {
+        $lastData = $this->model->getLastData();
+        $obat = $this->model->getDataObatPasien($lastData['id']);
+        $pasien = $this->model->getDataPasien($lastData['id']);
+        extract($pasien, EXTR_SKIP);
+        extract($obat, EXTR_SKIP);
+        require_once('view/transaksi/checkout.php');
+    }
+
+    public function transaksi()
+    {
+        $tunai = htmlspecialchars($_POST['tunai']);
+        $total_harga = htmlspecialchars($_POST['total_harga']);
+        $lastData = $this->model->getLastData();
+
+        if ($tunai >= $total_harga) {
+            $this->model->prosesUpdateStatusTransaksi($lastData['id']);
+            $this->model->prosesUpdateStatusRegristrasi($lastData['id_regristrasi']);
+            $_SESSION['pesan'] = 'Berhasil';
+            header("location: index.php?page=transaksi&aksi=view");
+        } else {
+            $_SESSION['pesan'] = 'Gagal';
+            header("location: index.php?page=transaksi&aksi=checkout");
         }
     }
 }

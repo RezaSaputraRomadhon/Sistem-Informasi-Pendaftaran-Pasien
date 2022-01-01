@@ -11,7 +11,15 @@
 <body>
 
 
-
+    <?php if ($_SESSION['pesan'] == 'Gagal') : ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Anda <strong><?= $_SESSION['pesan'] ?></strong> Melakukan Transaksi
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <?php $_SESSION['pesan'] = 'start'; ?>
+    <?php endif; ?>
 
 
     <div class="card shadow mb-4">
@@ -32,16 +40,17 @@
                         </tr>
                     </thead>
                     <tbody>
-
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Paracetamol</td>
-                            <td>Obat Bebas</td>
-                            <td>Pil</td>
-                            <td>2</td>
-                            <td>20000</td>
-                        </tr>
-
+                        <?php $no = 1;
+                        foreach ($obat as $row) : ?>
+                            <tr>
+                                <th scope="row"><?= $no++ ?></th>
+                                <td><?= $row['obat'] ?></td>
+                                <td><?= $row['kategori'] ?></td>
+                                <td><?= $row['jenis'] ?></td>
+                                <td><?= $row['jumlah_obat'] ?></td>
+                                <td><?= number_format($row['jumlah_harga'], 0, ',', '.')  ?></td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
@@ -50,11 +59,11 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h5 class="float-left m-0 font-weight-bold text-dark-blue">Pembayaran</h5>
-            <h6 class="float-right font-italic text-warning m-0 font-weight-bold text-dark-blue"><b>Total Harga : Rp.</b></h6>
+            <h6 class="float-right font-italic text-warning m-0 font-weight-bold text-dark-blue"><b>Total Harga : Rp. <?= number_format($pasien['total_harga'], 0, ',', '.') ?></b></h6>
         </div>
         <div class="card-body ml-2 mr-2">
-            <form action="index.php?page=transaksi&aksi=storecheckout1" method="POST">
-                <input type="hidden" id="total" class="form-control" name="total_harga" value="<?= $pembeli['total_harga'] ?>">
+            <form action="index.php?page=transaksi&aksi=transaksi" method="POST">
+                <input type="hidden" id="total" class="form-control" name="total_harga" value="<?= $pasien['total_harga'] ?>">
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Tunai</label>
                     <div class="col-sm-10">
