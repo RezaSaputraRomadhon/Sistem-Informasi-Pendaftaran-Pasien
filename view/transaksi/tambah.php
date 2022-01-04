@@ -94,7 +94,7 @@
                                 <td><?= $no++; ?></td>
                                 <td><?= $row['obat']  ?></td>
                                 <td><?= $row['jumlah_obat'] ?></td>
-                                <td><?= $row['jumlah_harga'] ?></td>
+                                <td><?= number_format($row['jumlah_harga'], 0, ',', '.')  ?></td>
                                 <td>
                                     <a href="index.php?page=transaksi&aksi=update&id=<?= $row['id'] ?>&jumlah=<?= $row['jumlah_obat'] ?>&obat=<?= $row['id_obat'] ?>" class="btn btn-success">Update</a>
                                     <a href="index.php?page=transaksi&aksi=delete&id=<?= $row['id'] ?>&jumlah=<?= $row['jumlah_obat'] ?>&obat=<?= $row['id_obat'] ?>" class="btn btn-danger">Delete</a>
