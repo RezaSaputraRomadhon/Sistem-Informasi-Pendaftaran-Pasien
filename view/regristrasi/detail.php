@@ -34,7 +34,7 @@
                             <td><?= $data['nama'] ?></td>
                             <td><?= $data['alamat'] ?></td>
                             <td><?= $data['pekerjaan'] ?></td>
-                            <td><?= date('d F Y', strtotime($data['tgl']))  ?></td>
+                            <td><?= $data['tgl']  ?></td>
                             <td><?= $data['poliklinik'] ?></td>
                         </tr>
                     </tbody>

@@ -1,4 +1,7 @@
 <?php
+include 'vendor/autoload.php';
+
+use Nim4n\SimpleDate;
 
 class transaksiController
 {
@@ -23,6 +26,7 @@ class transaksiController
         $id = htmlspecialchars($_GET['id']);
         $pasien = $this->model->getDataPasien($id);
         $data = $this->model->getDataObatPasien($id);
+        $pasien['tgl'] = SimpleDate::dayDate($pasien['tgl']);
         extract($pasien);
         extract($data);
         require_once('view/transaksi/detail.php');

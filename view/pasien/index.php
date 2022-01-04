@@ -79,7 +79,6 @@
                                 <td>
                                     <a href="index.php?page=pasien&aksi=update&id=<?= $row['id_pasien'] ?>" class="btn btn-success">Update</a>
                                     <a href="index.php?page=pasien&aksi=delete&id=<?= $row['id_pasien'] ?>" class="btn btn-danger">Delete</a>
-                                    <a href="index.php?page=pasien&aksi=print&id=<?= $row['id_pasien'] ?>" target="_blank" class="btn btn-warning">Kartu Berobat</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

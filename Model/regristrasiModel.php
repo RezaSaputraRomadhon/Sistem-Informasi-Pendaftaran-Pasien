@@ -1,4 +1,7 @@
 <?php
+include 'vendor/autoload.php';
+
+use Nim4n\SimpleDate;
 
 class regristrasiModel
 {
@@ -12,6 +15,7 @@ class regristrasiModel
         $query = koneksi()->query($sql);
         $hasil = [];
         while ($data = $query->fetch_assoc()) {
+            $data['tgl'] = SimpleDate::dayDate($data['tgl']);
             $hasil[] = $data;
         }
         return $hasil;

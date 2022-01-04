@@ -51,7 +51,7 @@
                         </tr>
                         <h6 class="m-0 font-weight-bold text-dark float-left">Nama : <?= $pasien['nama'] ?></h6><br>
                         <h6 class="m-0 font-weight-bold text-dark float-left">Alamat : <?= $pasien['alamat'] ?></h6><br>
-                        <h6 class="m-0 font-weight-bold text-dark float-left">Tanggal : <?= date('d F Y', strtotime($pasien['tgl']))  ?></h6>
+                        <h6 class="m-0 font-weight-bold text-dark float-left">Tanggal : <?= $pasien['tgl']  ?></h6>
                     </tbody>
                 </table>
             </div>

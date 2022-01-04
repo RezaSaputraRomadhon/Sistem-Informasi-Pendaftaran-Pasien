@@ -54,7 +54,7 @@
                                 <td><?= $no++ ?></td>
                                 <td><?= $row['nama'] ?></td>
                                 <td><?= $row['namaPoliklinik'] ?></td>
-                                <td><?= date('d F Y', strtotime($row['tgl'])) ?></td>
+                                <td><?= $row['tgl'] ?></td>
                                 <td>
                                     <a href="index.php?page=regristrasi&aksi=detail&id=<?= $row['id'] ?>" class="btn btn-dark-blue" style="font-size: 16px;">Lihat Detail</a>
                                 </td>

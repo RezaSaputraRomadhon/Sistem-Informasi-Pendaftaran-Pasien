@@ -78,7 +78,7 @@
                             <tr>
                                 <td><?= $no++ ?></td>
                                 <td><?= $row['nama'] ?></td>
-                                <td><?= date('d F Y', strtotime($row['tgl'])) ?></td>
+                                <td><?= $row['tgl'] ?></td>
                                 <td><?= number_format($row['total_harga'], 0, ',', '.') ?></td>
                                 <?php if ($row['status'] == 1) : ?>
                                     <td>

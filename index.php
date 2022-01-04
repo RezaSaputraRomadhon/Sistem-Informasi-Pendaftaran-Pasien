@@ -44,8 +44,6 @@ if (isset($_GET['page']) && isset($_GET['aksi'])) {
                 $pasien->edit();
             } else if ($aksi == 'delete') {
                 $pasien->delete();
-            } else if ($aksi == 'print') {
-                $pasien->print();
             }
         } else {
             header("location: index.php?page=auth&aksi=login");

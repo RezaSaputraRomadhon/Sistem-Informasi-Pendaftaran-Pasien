@@ -1,4 +1,7 @@
 <?php
+include 'vendor/autoload.php';
+
+use Nim4n\SimpleDate;
 
 class dashboardController
 {
@@ -83,11 +86,12 @@ class dashboardController
             'november' => $november,
             'desember' => $desember
         );
-
+        $bulan = SimpleDate::createFormat("MMMM", date('F'));
         extract($obat, EXTR_SKIP);
         extract($kategori, EXTR_SKIP);
         extract($jenis, EXTR_SKIP);
         extract((array)$totalUang, EXTR_SKIP);
+        extract((array)$bulan, EXTR_SKIP);
         extract($data, EXTR_SKIP);
         require_once('view/dashboard/adminobat.php');
     }
@@ -170,10 +174,11 @@ class dashboardController
             'november' => $november,
             'desember' => $desember
         );
-
+        $bulan = SimpleDate::createFormat("MMMM", date('F'));
         extract($pasien, EXTR_SKIP);
         extract($data, EXTR_SKIP);
         extract((array)$total, EXTR_SKIP);
+        extract((array)$bulan, EXTR_SKIP);
         extract($poliklinik, EXTR_SKIP);
         extract((array)$regristrasi, EXTR_SKIP);
         require_once('view/dashboard/adminregristrasi.php');

@@ -1,4 +1,7 @@
 <?php
+include 'vendor/autoload.php';
+
+use Nim4n\SimpleDate;
 
 class regristrasiController
 {
@@ -44,6 +47,7 @@ class regristrasiController
     {
         $id = htmlspecialchars($_GET['id']);
         $data = $this->model->getDataById($id);
+        $data['tgl'] = SimpleDate::dayDate($data['tgl']);
         extract($data);
         require_once('view/regristrasi/detail.php');
     }
