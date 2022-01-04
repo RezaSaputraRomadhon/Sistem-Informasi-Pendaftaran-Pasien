@@ -12,7 +12,7 @@
     <title>View Data Obat</title>
 
     <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
@@ -23,15 +23,8 @@
 <body>
 
 
-    <?php if ($_SESSION['pesan'] == 'berhasil') : ?>
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            Selamat Anda <strong>Berhasil</strong> Login
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <?php $_SESSION['pesan'] = 'start'; ?>
-    <?php elseif ($_SESSION['pesan'] == 'Menambahkan' || $_SESSION['pesan'] == 'Mengupdate' || $_SESSION['pesan'] == 'Menghapus') : ?>
+
+    <?php if ($_SESSION['pesan'] == 'Menambahkan' || $_SESSION['pesan'] == 'Mengupdate' || $_SESSION['pesan'] == 'Menghapus') : ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             Anda Berhasil <strong><?= $_SESSION['pesan'] ?></strong> Obat
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">

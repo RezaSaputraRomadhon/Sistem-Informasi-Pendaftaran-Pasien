@@ -1,4 +1,7 @@
 <?php
+
+use Mpdf\Mpdf;
+
 require_once("vendor/autoload.php");
 
 
@@ -44,18 +47,18 @@ $html = '<!DOCTYPE html>
                 <td>
                     <p>Nama </p>
                 </td>
-                <td><p> :</p></td>
-                <td><p>Syahrul Riza Andi Santoso</p></td>
+                <td><p> :</p></td>';
+$html .=   '<td><p>' . $pasien['nama'] . '</p></td>
             </tr>
             <tr>
                 <td><p>Pekerjaan</p></td>
                 <td><p> :</p></td>
-                <td><p>Mahasiswa</p></td>
+                <td><p>' . $pasien['pekerjaan'] . '</p></td>
             </tr>
             <tr>
                 <td><p>Alamat</p></td>
                 <td><p> :</p></td>
-                <td><p>Sidoarjo</p></td>
+                <td><p>' . $pasien['alamat'] . '</p></td>
             </tr>
         </table>
         <br><br>
@@ -74,4 +77,5 @@ $html = '<!DOCTYPE html>
 </body>
 </html>';
 $mpdf->WriteHTML($html);
-$mpdf->Output('Kartu Berobat.pdf', \Mpdf\Output\Destination::INLINE);
+
+$mpdf->Output('Kartu Berobat.pdf' .  $pasien['nama'], \Mpdf\Output\Destination::INLINE);

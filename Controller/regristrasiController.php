@@ -39,6 +39,14 @@ class regristrasiController
             header("location: index.php?page=regristrasi&aksi=tambah");
         }
     }
+
+    public function detail()
+    {
+        $id = htmlspecialchars($_GET['id']);
+        $data = $this->model->getDataById($id);
+        extract($data);
+        require_once('view/regristrasi/detail.php');
+    }
 }
 // $tes = new transaksiModel();
 // var_export($tes->getStock4(5, 4, 1));

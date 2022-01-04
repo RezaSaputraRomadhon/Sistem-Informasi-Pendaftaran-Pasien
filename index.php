@@ -10,6 +10,7 @@ require_once("Model/poliklinikModel.php");
 require_once("Model/pasienModel.php");
 require_once("Model/transaksiModel.php");
 require_once("Model/regristrasiModel.php");
+require_once("Model/dashboardModel.php");
 
 require_once("Controller/authController.php");
 require_once("Controller/obatController.php");
@@ -20,6 +21,7 @@ require_once("Controller/pasienController.php");
 require_once("Controller/menuController.php");
 require_once("Controller/transaksiController.php");
 require_once("Controller/regristrasiController.php");
+require_once("Controller/dashboardController.php");
 
 if (isset($_GET['page']) && isset($_GET['aksi'])) {
     session_start();
@@ -42,6 +44,8 @@ if (isset($_GET['page']) && isset($_GET['aksi'])) {
                 $pasien->edit();
             } else if ($aksi == 'delete') {
                 $pasien->delete();
+            } else if ($aksi == 'print') {
+                $pasien->print();
             }
         } else {
             header("location: index.php?page=auth&aksi=login");
@@ -78,6 +82,8 @@ if (isset($_GET['page']) && isset($_GET['aksi'])) {
                 $regristrasi->tambah();
             } else if ($aksi == 'store') {
                 $regristrasi->store();
+            } else if ($aksi == 'detail') {
+                $regristrasi->detail();
             }
         } else {
             header("location: index.php?page=auth&aksi=login");
@@ -184,6 +190,28 @@ if (isset($_GET['page']) && isset($_GET['aksi'])) {
         } else if ($aksi == 'logout') {
             $auth->logout();
         }
+    } else if ($page == "dashboard obat") {
+        $dashboard = new dashboardController();
+        $menu->header(2);
+        if ($_SESSION['role'] == 'admin obat') {
+            if ($aksi == 'view') {
+                $dashboard->view();
+            }
+        } else {
+            header("location: index.php?page=auth&aksi=login");
+        }
+        $menu->footer();
+    } else if ($page == "dashboard regristrasi") {
+        $dashboard = new dashboardController();
+        $menu->header(1);
+        if ($_SESSION['role'] == 'admin regristrasi') {
+            if ($aksi == 'view') {
+                $dashboard->view2();
+            }
+        } else {
+            header("location: index.php?page=auth&aksi=login");
+        }
+        $menu->footer();
     }
 } else {
     header('location:index.php?page=auth&aksi=login');

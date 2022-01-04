@@ -61,10 +61,7 @@
                             <label>No Induk</label>
                             <input type="number" class="form-control" name="no_induk" id="no_induk">
                         </div>
-                        <div class="form-group">
-                            <label>Nama</label>
-                            <input type="text" class="form-control" name="nama" id="nama">
-                        </div>
+
                         <div class="form-group">
                             <label>Password</label>
                             <input type="password" class="form-control" name="password" id="password">

@@ -1,17 +1,10 @@
 function cekFormLogin() {
-    nama = document.getElementById("nama");
+   
     no_induk = document.getElementById("no_induk");
     password = document.getElementById("password");
 
 
-    if (nama.value == "") {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Nama Atau No Induk Tidak Boleh Di Kosongi',
-        })
-        return false;
-    } else if(password.value == ""){
+   if(password.value == ""){
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
@@ -19,14 +12,7 @@ function cekFormLogin() {
         })
         return false;
     } 
-    else if (nama.value.length <= 3) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Nama Atau No Induk Minimal 3 Karakter',
-        })
-        return false;
-    } else if (no_induk.value == "") {
+    else if (no_induk.value == "") {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',

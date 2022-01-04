@@ -17,6 +17,13 @@ class regristrasiModel
         return $hasil;
     }
 
+    public function getDataById($id)
+    {
+        $sql = "SELECT pasien.nama AS nama, pasien.alamat AS alamat, pasien.pekerjaan AS pekerjaan, regristrasi.id_regristrasi AS id, regristrasi.tgl_regristrasi AS tgl, poliklinik.nama AS poliklinik FROM regristrasi LEFT JOIN poliklinik ON regristrasi.id_poliklinik = poliklinik.id_poliklinik LEFT JOIN pasien ON regristrasi.id_pasien = pasien.id_pasien WHERE regristrasi.id_regristrasi = $id";
+        $query = koneksi()->query($sql);
+        return $query->fetch_assoc();
+    }
+
     public function getNamaRegristrasi()
     {
         $sql = "SELECT * FROM pasien";

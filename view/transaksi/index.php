@@ -9,10 +9,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>View Data Poliklinik</title>
+    <title>View Data Transaksi Obat</title>
 
     <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
@@ -82,7 +82,6 @@
                                 <td><?= number_format($row['total_harga'], 0, ',', '.') ?></td>
                                 <?php if ($row['status'] == 1) : ?>
                                     <td>
-                                        <a href="" class="btn btn-dark"><i class="fas fa-print"></i></a>
                                         <a href="index.php?page=transaksi&aksi=detail&id=<?= $row['id'] ?>" class="btn btn-dark-blue">Lihat Detail</a>
                                     </td>
                                 <?php else : ?>
