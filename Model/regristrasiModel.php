@@ -11,7 +11,7 @@ class regristrasiModel
         $sql = "SELECT pasien.nama AS nama, regristrasi.id_regristrasi AS id, regristrasi.tgl_regristrasi AS tgl, poliklinik.nama AS namaPoliklinik
         FROM regristrasi LEFT JOIN poliklinik ON regristrasi.id_poliklinik = poliklinik.id_poliklinik
         LEFT JOIN pasien ON regristrasi.id_pasien = pasien.id_pasien
-        GROUP BY regristrasi.id_regristrasi";
+        ORDER BY regristrasi.id_regristrasi DESC";
         $query = koneksi()->query($sql);
         $hasil = [];
         while ($data = $query->fetch_assoc()) {
@@ -30,7 +30,7 @@ class regristrasiModel
 
     public function getNamaRegristrasi()
     {
-        $sql = "SELECT * FROM pasien";
+        $sql = "SELECT * FROM pasien ORDER BY id_pasien DESC";
         $query = koneksi()->query($sql);
         $hasil = [];
         while ($data = $query->fetch_assoc()) {

@@ -13,8 +13,8 @@ class transaksiModel
         FROM transaksiobat LEFT JOIN detailtransaksi ON transaksiobat.id_transaksi = detailtransaksi.id_transaksi
         LEFT JOIN regristrasi ON transaksiobat.id_regristrasi = regristrasi.id_regristrasi
         LEFT JOIN obat ON detailtransaksi.id_obat = obat.id_obat
-        LEFT JOIN pasien ON regristrasi.id_pasien = pasien.id_pasien
-        GROUP BY transaksiobat.id_transaksi";
+        LEFT JOIN pasien ON regristrasi.id_pasien = pasien.id_pasien 
+        GROUP BY transaksiobat.id_transaksi ORDER BY transaksiobat.id_transaksi DESC";
         $query = koneksi()->query($sql);
         $hasil = [];
         while ($data = $query->fetch_assoc()) {
